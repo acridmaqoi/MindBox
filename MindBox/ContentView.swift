@@ -14,8 +14,7 @@ struct ContentView: View {
     @FetchRequest(entity: Task.entity(), sortDescriptors: [
         NSSortDescriptor(keyPath: \Task.completed, ascending: false),
         NSSortDescriptor(keyPath: \Task.name, ascending: true)
-    ])
-    var tasks: FetchedResults<Task>
+    ]) var tasks: FetchedResults<Task>
     
     // Add Button
     @Environment(\.presentationMode) var presentation
@@ -23,25 +22,23 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            List(tasks, id: \.self) { task in
-                
-                    
-                HStack {
-                    NavigationLink(destination: TaskDetailView(task: task)) {
+            List {
+                ForEach(tasks, id: \.self) { task in
+                    HStack {
                         TaskCell(task: task).environment(\.managedObjectContext, self.managedObjectContext)
-//                        .onDelete(perform: deleteTask)
-                    }//.buttonStyle(BorderlessButtonStyle())
+                        
+                        NavigationLink(destination: TaskDetailView(task: task)) {
+                            EmptyView()
+                        }
+                    }
                     
-
                 }
-                    
-                
+                .onDelete(perform: deleteTask)
             }
             .navigationBarTitle("Today")
             .navigationBarItems(trailing:
                 Button(action: {
-//                    TaskUtils.create("self.taskName", description: "self.taskDesc", using: self.managedObjectContext)
-                    self.showingNewTaskView = true // sheet view causes buttons to no longer work
+                    self.showingNewTaskView = true
                 }) {
                     Image(systemName: "plus.circle.fill")
                         .foregroundColor(.blue)
@@ -74,7 +71,7 @@ struct TaskCell: View {
                     .foregroundColor(.blue)
                     .imageScale(.large)
             }
-            .buttonStyle(HighPriorityButtonStyle())
+            .buttonStyle(BorderlessButtonStyle())
             .frame(width: 30, height: 30)
     
             VStack(alignment: .leading) {
@@ -86,32 +83,6 @@ struct TaskCell: View {
         }
     }
     
-}
-
-struct HighPriorityButtonStyle: PrimitiveButtonStyle {
-    func makeBody(configuration: PrimitiveButtonStyle.Configuration) -> some View {
-        MyButton(configuration: configuration)
-    }
-    
-    private struct MyButton: View {
-        @State var pressed = false
-        let configuration: PrimitiveButtonStyle.Configuration
-        
-        var body: some View {
-            let gesture = DragGesture(minimumDistance: 0)
-                .onChanged { _ in self.pressed = true }
-                .onEnded { value in
-                    self.pressed = false
-                    if value.translation.width < 10 && value.translation.height < 10 {
-                        self.configuration.trigger()
-                    }
-                }
-            
-            return configuration.label
-                .opacity(pressed ? 0.5 : 1.0)
-                .highPriorityGesture(gesture)
-        }
-    }
 }
 
 struct ContentView_Previews: PreviewProvider {
