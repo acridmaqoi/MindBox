@@ -10,7 +10,8 @@ import SwiftUI
 
 struct NewTaskView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
-    @Environment(\.presentationMode) var presentation
+    
+    @Binding var showingNewTaskView: Bool
     
     @State private var taskName: String = ""
     @State private var taskDesc: String = ""
@@ -25,7 +26,11 @@ struct NewTaskView: View {
             .navigationBarItems(trailing:
                 Button(action: {
                     TaskUtils.create(self.taskName, description: self.taskDesc, using: self.managedObjectContext)
-                    self.presentation.wrappedValue.dismiss()
+                    withAnimation {
+                        self.showingNewTaskView = false
+                    }
+                    
+                    
                 }) {
                     Text("Done")
                 }
@@ -35,7 +40,9 @@ struct NewTaskView: View {
 }
 
 struct NewTaskView_Previews: PreviewProvider {
+    @State static var showingNewTaskView = false
+    
     static var previews: some View {
-        NewTaskView()
+        NewTaskView(showingNewTaskView: $showingNewTaskView)
     }
 }

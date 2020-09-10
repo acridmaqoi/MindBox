@@ -16,7 +16,8 @@
 		5011022624F573B1001B4FA4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5011022424F573B1001B4FA4 /* LaunchScreen.storyboard */; };
 		5011023024F5780A001B4FA4 /* TaskUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5011022F24F5780A001B4FA4 /* TaskUtils.swift */; };
 		50C171EC24FD5BA700D23E45 /* TaskDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C171EB24FD5BA700D23E45 /* TaskDetailView.swift */; };
-		50C73943250A96D800FC780C /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C73942250A96D800FC780C /* BottomSheetView.swift */; };
+		50C73967250AAAA900FC780C /* BottomSheetModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C73966250AAAA900FC780C /* BottomSheetModal.swift */; };
+		50C73969250AAABE00FC780C /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50C73968250AAABE00FC780C /* ViewExtensions.swift */; };
 		50D4DED824FBFB850080EB67 /* NewTaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D4DED724FBFB850080EB67 /* NewTaskView.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +33,8 @@
 		5011022724F573B1001B4FA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5011022F24F5780A001B4FA4 /* TaskUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskUtils.swift; sourceTree = "<group>"; };
 		50C171EB24FD5BA700D23E45 /* TaskDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailView.swift; sourceTree = "<group>"; };
-		50C73942250A96D800FC780C /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
+		50C73966250AAAA900FC780C /* BottomSheetModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetModal.swift; sourceTree = "<group>"; };
+		50C73968250AAABE00FC780C /* ViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		50D4DED724FBFB850080EB67 /* NewTaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTaskView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -71,8 +73,9 @@
 				5011021D24F573B0001B4FA4 /* ContentView.swift */,
 				50D4DED724FBFB850080EB67 /* NewTaskView.swift */,
 				50C171EB24FD5BA700D23E45 /* TaskDetailView.swift */,
-				50C73942250A96D800FC780C /* BottomSheetView.swift */,
 				5011022F24F5780A001B4FA4 /* TaskUtils.swift */,
+				50C73966250AAAA900FC780C /* BottomSheetModal.swift */,
+				50C73968250AAABE00FC780C /* ViewExtensions.swift */,
 				5011021F24F573B1001B4FA4 /* Assets.xcassets */,
 				5011022424F573B1001B4FA4 /* LaunchScreen.storyboard */,
 				5011022724F573B1001B4FA4 /* Info.plist */,
@@ -162,10 +165,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				50C171EC24FD5BA700D23E45 /* TaskDetailView.swift in Sources */,
-				50C73943250A96D800FC780C /* BottomSheetView.swift in Sources */,
 				5011021724F573B0001B4FA4 /* AppDelegate.swift in Sources */,
 				50D4DED824FBFB850080EB67 /* NewTaskView.swift in Sources */,
 				5011021924F573B0001B4FA4 /* SceneDelegate.swift in Sources */,
+				50C73969250AAABE00FC780C /* ViewExtensions.swift in Sources */,
+				50C73967250AAAA900FC780C /* BottomSheetModal.swift in Sources */,
 				5011023024F5780A001B4FA4 /* TaskUtils.swift in Sources */,
 				5011021E24F573B0001B4FA4 /* ContentView.swift in Sources */,
 				5011021C24F573B0001B4FA4 /* MindBox.xcdatamodeld in Sources */,

@@ -22,7 +22,14 @@ struct TaskUtils {
     }
     
     public static func toggleIsComplete(_ task: Task, using managedObjectContext: NSManagedObjectContext) {
-        task.completed = !task.completed
+        if task.completed {
+            task.completed = false
+            task.streak -= 1
+        } else {
+            task.completed = true
+            task.streak += 1
+        }
+        
         saveChanges(using: managedObjectContext)
     }
     

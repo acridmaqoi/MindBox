@@ -22,32 +22,40 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(tasks, id: \.self) { task in
-                    HStack {
-                        TaskCell(task: task).environment(\.managedObjectContext, self.managedObjectContext)
-                        
-                        NavigationLink(destination: TaskDetailView(task: task)) {
-                            EmptyView()
+            ZStack {
+                List {
+                    ForEach(tasks, id: \.self) { task in
+                        HStack {
+                            TaskCell(task: task).environment(\.managedObjectContext, self.managedObjectContext)
+                            NavigationLink(destination: TaskDetailView(task: task)) {
+                                EmptyView()
+                            }
                         }
                     }
-                    
+                    .onDelete(perform: deleteTask)
                 }
-                .onDelete(perform: deleteTask)
+                .navigationBarTitle("Today")
+                .navigationBarItems(trailing:
+                    Button(action: {
+                        withAnimation {
+                            self.showingNewTaskView = true
+                        }
+                    }) {
+                        Image(systemName: "plus.circle.fill")
+                            .foregroundColor(.blue)
+                            .imageScale(.large)
+                            .frame(width: 40, height: 40, alignment: .trailing)
+                    }
+                )
+                
+                BottomSheetModal(display: $showingNewTaskView) {
+                    NewTaskView(showingNewTaskView: self.$showingNewTaskView)
+                        .font(Font.system(.headline))
+                        .foregroundColor(Color.black)
+                }
             }
-            .navigationBarTitle("Today")
-            .navigationBarItems(trailing:
-                Button(action: {
-                    self.showingNewTaskView = true
-                }) {
-                    Image(systemName: "plus.circle.fill")
-                        .foregroundColor(.blue)
-                        .imageScale(.large)
-                        .frame(width: 40, height: 40, alignment: .trailing)
-                }.sheet(isPresented: $showingNewTaskView) {
-                    NewTaskView().environment(\.managedObjectContext, self.managedObjectContext)
-                }
-            )
+            
+            
         }
     }
     
